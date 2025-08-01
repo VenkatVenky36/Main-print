@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Many Happy Returns My Sri 🌸</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+    <style>
+       
+
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wish-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            background: rgba(255, 107, 157, 0.1);
+            box-shadow: 
+                0 30px 60px rgba(255, 107, 157, 0.3),
+                inset 0 0 50px rgba(255, 107, 157, 0.1);
+            border-color: rgba(255, 107, 157, 0.5);
+        }
+
+        .wish-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .wish-card:hover::before {
+            left: 100%;
+        }
+
+        .wish-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        .wish-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ff6b9d;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .wish-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+            color: #e8e8e8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Special Love Message */
+        .love-message {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(196, 69, 105, 0.1));
+            border: 2px solid rgba(255, 107, 157, 0.4);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 80px 0;
+            text-align: center;
+            font-size: 1.4rem;
+            line-height: 2;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+            animation: messageGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes messageGlow {
+            0% { 
+                box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+                border-color: rgba(255, 107, 157, 0.4);
+            }
+            100% { 
+                box-shadow: 0 0 60px rgba(255, 107, 157, 0.6);
+                border-color: rgba(255, 107, 157, 0.7);
+            }
+        }
+
+        /* Interactive Nature Elements */
+        .interactive-nature {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .nature-item {
+            font-size: 4rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: natureBreath 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+
+        .nature-item:nth-child(2) { animation-delay: 1s; }
+        .nature-item:nth-child(3) { animation-delay: 2s; }
+        .nature-item:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes natureBreath {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .nature-item:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 30px currentColor) brightness(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.8rem; }
+            .subtitle { font-size: 2rem; }
+            .nature-gallery { grid-template-columns: 1fr; gap: 20px; }
+            .wishes-container { grid-template-columns: 1fr; gap: 30px; }
+            .wish-card { padding: 30px; }
+            .love-message { padding: 30px; font-size: 1.2rem; }
+            .music-control { padding: 12px 25px; font-size: 1rem; }
+        }
+
+        /* Loading Animation */
+        .nature-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: loadingFade 1s ease-out 2s forwards;
+        }
+
+        .loading-flower {
+            font-size: 5rem;
+            animation: flowerBloom 2s ease-in-out infinite alternate;
+        }
+
+        .loading-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff6b9d;
+            margin-top: 20px;
+            animation: textPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flowerBloom {
+            0% { transform: scale(0.8) rotate(0deg); }
+            100% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes loadingFade {
+            0% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="nature-loading">
+        <div class="loading-flower">🌸</div>
+        <div class="loading-text">Preparing something magical for you...</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="nature-cursor"></div>
+
+    <!-- Background Elements -->
+    <div class="nature-bg"></div>
+    <div class="nature-elements" id="natureElements"></div>
+    <div class="mystical-particles" id="mysticalParticles"></div>
+
+    <!-- Music Control -->
+    <div class="music-control" id="musicControl">
+        🎵 Nature Symphony
+        <div class="music-visualizer">
+            <div class="vis-bar"></div>
+            <div class="vis-bar"></div>
+            <div class="vis-bar"></div>
+            <div class="vis-bar"></div>
+            <div class="vis-bar"></div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" autoplay>
+        <source src="./audio assests/achacham telugu andham song.mp3">
+       <!-- <source src="./audio assests/achacham telugu andham song.mp3" type="audio/ogg"> -->
+    </audio>
+
+    <div class="container">
+        <h1 class="main-title">Many Happy Returns</h1>
+        <p class="subtitle">Of The Day My Beautiful Bangaru Thalli 💖</p>
+
+        <!-- Nature Photo Gallery -->
+        <div class="nature-gallery">
+            <div class="nature-frame">
+                <div class="nature-placeholder">
+                    <img src="./img assests/left pic.jpg" alt="">
+                    <small>Like a flower in nature's garden</small>
+                </div>
+            </div>
+            <div class="nature-frame">
+                <div class="nature-placeholder">
+                    <img src="./img assests/mid pic.jpg" alt="">
+                    <small>As beautiful as a butterfly</small>
+                </div>
+            </div>
+            <div class="nature-frame">
+                <div class="nature-placeholder">
+                    <img src="./img assests/right pic.jpg" alt="">
+                    <small>Blooming like a rose</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Birthday Wishes Cards -->
+        <div class="wishes-container">
+            <div class="wish-card">
+                <div class="wish-icon">🌸</div>
+                <div class="wish-title">Like Cherry Blossoms</div>
+                <div class="wish-text">
+                    Just as cherry blossoms return each spring with renewed beauty, 
+                    may your special day return every year bringing more joy, love, 
+                    and wonderful moments. You bloom more beautifully with each passing year.
+                </div>
+            </div>
+
+            <div class="wish-card">
+                <div class="wish-icon">🦋</div>
+                <div class="wish-title">Butterfly Transformation</div>
+                <div class="wish-text">
+                    Like a butterfly emerging more beautiful each season, 
+                    you continue to transform into an even more amazing person. 
+                    May this new year of your life bring magical transformations and dreams fulfilled.
+                </div>
+            </div>
+
+            <div class="wish-card">
+                <div class="wish-icon">🌙</div>
+                <div class="wish-title">Moonlight Wishes</div>
+                <div class="wish-text">
+                    Under the same moon and stars, I wish for your happiness 
+                    to return multiplied every year. Like the moon's phases, 
+                    may your life be filled with beautiful cycles of joy and growth.
+                </div>
+            </div>
+
+            <div class="wish-card">
+                <div class="wish-icon">🌊</div>
+                <div class="wish-title">Ocean of Love</div>
+                <div class="wish-text">
+                    Like waves returning to the shore eternally, 
+                    my love for you returns stronger each day. 
+                    May the ocean of happiness in your life expand endlessly with each birthday.
+                </div>
+            </div>
+
+            <div class="wish-card">
+                <div class="wish-icon">🌟</div>
+                <div class="wish-title">Starlight Dreams</div>
+                <div class="wish-text">
+                    Stars return to light up the night sky, just as your birthday 
+                    returns to light up my year. You are my brightest star, 
+                    and I wish for all your dreams to shine as brilliantly as you do.
+                </div>
+            </div>
+
+            <div class="wish-card">
+                <div class="wish-icon">🌺</div>
+                <div class="wish-title">Eternal Bloom</div>
+                <div class="wish-text">
+                    In nature's garden, the most beautiful flowers return each season. 
+                    You are nature's masterpiece, and with each birthday, 
+                    you bloom more magnificently. Happy returns of your most special day!
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Love Message -->
+        <div class="love-message">
+            My dearest Sri, as nature celebrates the return of seasons with renewed beauty, 
+            I celebrate the return of your special day with endless gratitude. 
+            You are like the morning sun that returns each day to brighten my world, 
+            like the flowers that return each spring to fill life with color, 
+            and like the stars that return each night to guide my dreams. 
+            <br><br>
+            Every year that returns in your life makes you more beautiful, 
+            more wise, and more precious to me. May many, many happy returns 
+            of this day bring you all the love, joy, and magic that nature has to offer. 
+            You are my universe, my seasons, my everything! 
+            <br><br>
+            💖 Happy Birthday, My Beautiful Bangaru Thalli! 💖
+        </div>
+
+        <!-- Interactive Nature Elements -->
+        <div class="interactive-nature">
+            <div class="nature-item" onclick="createNatureMagic(this, '🌸')">🌸</div>
+            <div class="nature-item" onclick="createNatureMagic(this, '🦋')">🦋</div>
+            <div class="nature-item" onclick="createNatureMagic(this, '🌙')">🌙</div>
+            <div class="nature-item" onclick="createNatureMagic(this, '⭐')">⭐</div>
+        </div>
+
+        <div style="font-size: 2.5rem; text-align: center; margin: 40px 0;">
+            🌸 🦋 🌙 ⭐ 🌊 🌺 🌸 🦋 🌙 ⭐ 🌊 🌺
+        </div>
+    </div>
